@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}Register - RoadBuddy{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    body {
+        background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+    }
+    
+    body:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        backdrop-filter: blur(5px);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+    
+    .card-header {
+        background: linear-gradient(135deg, #9c27b0, #673ab7);
+        padding: 1.5rem 1rem;
+        border-bottom: none;
+    }
+    
+    .card-header h3 {
+        color: #fff;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #9c27b0, #673ab7);
+        border: none;
+        border-radius: 30px;
+        padding: 10px;
+        font-weight: 600;
+        box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(156, 39, 176, 0.6);
+    }
+    
+    .form-control {
+        border-radius: 0 5px 5px 0;
+        height: 45px;
+    }
+    
+    .input-group-text {
+        border-radius: 5px 0 0 5px;
+        background-color: #f0f0f0;
+        padding: 0 15px;
+    }
+    
+    .form-label {
+        font-weight: 500;
+        color: #444;
+    }
+    
+    .card-footer {
+        background-color: rgba(247, 247, 247, 0.8);
+        border-top: none;
+        padding: 1rem;
+    }
+    
+    .road-symbols {
+        position: absolute;
+        width: 150px;
+        opacity: 0.1;
+        right: -30px;
+        bottom: -30px;
+        transform: rotate(15deg);
+    }
+    
+    .form-check-input:checked {
+        background-color: #9c27b0;
+        border-color: #9c27b0;
+    }
+    
+    a {
+        color: #9c27b0;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        color: #673ab7;
+        text-decoration: underline;
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .provider-fields {
+        background-color: rgba(247, 247, 247, 0.5);
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-left: 4px solid #9c27b0;
+    }
+    
+    .service-icon {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #9c27b0;
+    }
+    
+    .role-selection {
+        position: relative;
+    }
+    
+    .role-selection:after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #9c27b0, transparent);
+        bottom: -15px;
+        left: 0;
+        width: 100%;
+    }
+    
+    .service-types {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .service-item {
+        transition: all 0.3s ease;
+    }
+    
+    .service-item:hover {
+        transform: translateY(-2px);
+    }
+    
+    .form-check-label {
+        cursor: pointer;
+    }
+    
+    .road-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: repeating-linear-gradient(90deg, #9c27b0, #9c27b0 10px, transparent 10px, transparent 20px);
+        opacity: 0.7;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="road-pattern"></div>
+                <div class="card-header">
+                    <h3 class="text-center mb-0">
+                        <i class="fas fa-user-plus me-2"></i>Create an Account
+                    </h3>
+                </div>
+                <div class="card-body position-relative">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5169/5169269.png" class="road-symbols">
+                    <form method="POST" action="{{ url_for('register') }}">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirm_password" class="form-label">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6 role-selection">
+                                <label for="role" class="form-label">Account Type</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <select class="form-control" id="role" name="role" required>
+                                        <option value="">Select Role</option>
+                                        <option value="customer">Customer</option>
+                                        <option value="provider">Service Provider</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider-specific fields (shown/hidden based on role selection) -->
+                        <div class="provider-fields" style="display: none;">
+                            <div class="mb-4">
+                                <label for="location" class="form-label">Service Area/Location</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <input type="text" class="form-control" id="location" name="location">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">
+                                    <i class="fas fa-tools service-icon"></i>Services Offered
+                                </label>
+                                <div class="row service-types">
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="towing" id="towing">
+                                            <label class="form-check-label" for="towing">
+                                                <i class="fas fa-truck-pickup me-1"></i> Vehicle Towing
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="repair" id="repair">
+                                            <label class="form-check-label" for="repair">
+                                                <i class="fas fa-wrench me-1"></i> Roadside Repair
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="fuel" id="fuel">
+                                            <label class="form-check-label" for="fuel">
+                                                <i class="fas fa-gas-pump me-1"></i> Fuel Delivery
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row service-types">
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="rental" id="rental">
+                                            <label class="form-check-label" for="rental">
+                                                <i class="fas fa-car me-1"></i> Vehicle Rental
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="food" id="food">
+                                            <label class="form-check-label" for="food">
+                                                <i class="fas fa-utensils me-1"></i> Food Delivery
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2">
+                                        <div class="form-check service-item">
+                                            <input class="form-check-input" type="checkbox" name="service_types" value="other" id="other">
+                                            <label class="form-check-label" for="other">
+                                                <i class="fas fa-plus-circle me-1"></i> Other Services
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                            <label class="form-check-label" for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-user-plus me-2"></i>Register
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p class="mb-0">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+{{ super() }}
+<script>
+    $(document).ready(function() {
+        // Add some animation to form elements
+        $('.card').addClass('animate__animated animate__fadeIn');
+        
+        // Show/hide provider fields based on role selection
+        $('#role').change(function() {
+            if ($(this).val() === 'provider') {
+                $('.provider-fields').slideDown();
+            } else {
+                $('.provider-fields').slideUp();
+            }
+        });
+
+        // Password confirmation validation
+        $('form').submit(function(e) {
+            var password = $('#password').val();
+            var confirmPassword = $('#confirm_password').val();
+
+            if (password != confirmPassword) {
+                e.preventDefault();
+                // Create a better alert
+                $('<div class="alert alert-danger animate__animated animate__shakeX">')
+                    .text('Passwords do not match!')
+                    .insertBefore($('form').find('button[type="submit"]').parent())
+                    .delay(3000)
+                    .fadeOut();
+            }
+        });
+        
+        // Focus on name field when page loads
+        $('#name').focus();
+    });
+</script>
+{% endblock %}
+{% endblock %}

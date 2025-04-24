@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="form-section animate-card">
+                <h2 class="section-title">Search Results</h2>
+                <p class="text-center mb-4">Results for: <strong>"{{ search_term }}"</strong></p>
+                
+                <form method="POST" action="{{ url_for('search') }}" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search_term" value="{{ search_term }}" 
+                            placeholder="Search again...">
+                        <select class="form-select" name="search_type" style="max-width: 150px;">
+                            <option value="all">All</option>
+                            <option value="services">Services</option>
+                            <option value="rentals">Rentals</option>
+                            {% if session.role == 'customer' %}
+                            <option value="trips">Trips</option>
+                            {% endif %}
+                        </select>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Service Request Results -->
+                {% if 'services' in results and results.services|length > 0 %}
+                <h3 class="mt-4 mb-3"><i class="fas fa-tools"></i> Service Requests</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Service Type</th>
+                                {% if session.role == 'provider' %}
+                                <th>Customer</th>
+                                {% endif %}
+                                <th>Location</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for service in results.services %}
+                            <tr>
+                                <td>{{ service.service_type|capitalize }}</td>
+                                {% if session.role == 'provider' %}
+                                <td>{{ service.customer_name }}</td>
+                                {% endif %}
+                                <td>{{ service.location }}</td>
+                                <td>{{ service.created_at.split('T')[0] }}</td>
+                                <td>
+                                    <span class="badge {% if service.status == 'pending' %}bg-warning
+                                    {% elif service.status == 'accepted' %}bg-success
+                                    {% elif service.status == 'completed' %}bg-primary
+                                    {% elif service.status == 'cancelled' %}bg-danger
+                                    {% else %}bg-secondary{% endif %}">
+                                        {{ service.status|capitalize }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('service_details', service_id=service.service_id) }}" 
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info {% if not ('rentals' in results and results.rentals|length > 0) and not ('trips' in results and results.trips|length > 0) %}mt-4{% endif %}">
+                    <i class="fas fa-info-circle"></i> No service requests found matching "{{ search_term }}".
+                </div>
+                {% endif %}
+                
+                <!-- Rental Results -->
+                {% if 'rentals' in results and results.rentals|length > 0 %}
+                <h3 class="mt-4 mb-3"><i class="fas fa-car"></i> Vehicle Rentals</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Vehicle Type</th>
+                                {% if session.role == 'provider' %}
+                                <th>Customer</th>
+                                {% endif %}
+                                <th>Pickup Date</th>
+                                <th>Dropoff Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rental in results.rentals %}
+                            <tr>
+                                <td>{{ rental.vehicle_type }}</td>
+                                {% if session.role == 'provider' %}
+                                <td>{{ rental.customer_name }}</td>
+                                {% endif %}
+                                <td>{{ rental.pickup_date }}</td>
+                                <td>{{ rental.dropoff_date }}</td>
+                                <td>
+                                    <span class="badge {% if rental.status == 'pending' %}bg-warning
+                                    {% elif rental.status == 'confirmed' %}bg-success
+                                    {% elif rental.status == 'completed' %}bg-primary
+                                    {% elif rental.status == 'cancelled' %}bg-danger
+                                    {% else %}bg-secondary{% endif %}">
+                                        {{ rental.status|capitalize }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('rental_details', rental_id=rental.rental_id) }}" 
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info {% if not ('services' in results and results.services|length > 0) and not ('trips' in results and results.trips|length > 0) %}mt-4{% endif %}">
+                    <i class="fas fa-info-circle"></i> No rental bookings found matching "{{ search_term }}".
+                </div>
+                {% endif %}
+                
+                <!-- Trip Results (Only for customers) -->
+                {% if session.role == 'customer' and 'trips' in results and results.trips|length > 0 %}
+                <h3 class="mt-4 mb-3"><i class="fas fa-map-marked-alt"></i> Trip Bookings</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Destination</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Trip Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trip in results.trips %}
+                            <tr>
+                                <td>{{ trip.destination }}</td>
+                                <td>{{ trip.start_date }}</td>
+                                <td>{{ trip.end_date }}</td>
+                                <td>{{ trip.trip_type }}</td>
+                                <td>
+                                    <span class="badge {% if trip.status == 'pending' %}bg-warning
+                                    {% elif trip.status == 'confirmed' %}bg-success
+                                    {% elif trip.status == 'completed' %}bg-primary
+                                    {% elif trip.status == 'cancelled' %}bg-danger
+                                    {% else %}bg-secondary{% endif %}">
+                                        {{ trip.status|capitalize }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('trip_details', trip_id=trip.trip_id) }}" 
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% elif session.role == 'customer' %}
+                <div class="alert alert-info {% if not ('services' in results and results.services|length > 0) and not ('rentals' in results and results.rentals|length > 0) %}mt-4{% endif %}">
+                    <i class="fas fa-info-circle"></i> No trip bookings found matching "{{ search_term }}".
+                </div>
+                {% endif %}
+                
+                <!-- No results found -->
+                {% if (not 'services' in results or results.services|length == 0) and 
+                       (not 'rentals' in results or results.rentals|length == 0) and 
+                       (not 'trips' in results or results.trips|length == 0) %}
+                <div class="text-center mt-4">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i> No results found for "{{ search_term }}".
+                        <p class="mt-2">Try a different search term or category.</p>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="d-grid gap-2 mt-4">
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

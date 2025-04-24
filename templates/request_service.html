@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Request Emergency Service - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="section-title">Request Emergency Service</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-section">
+                <form action="{{ url_for('request_service') }}" method="post">
+                    <div class="mb-3">
+                        <label for="service_type" class="form-label">Service Type</label>
+                        <select name="service_type" id="service_type" class="form-select" required>
+                            <option value="">-- Select Service Type --</option>
+                            <option value="towing">Towing Service</option>
+                            <option value="fuel_delivery">Fuel Delivery</option>
+                            <option value="battery_jump">Battery Jump Start</option>
+                            <option value="tire_change">Tire Change</option>
+                            <option value="lockout">Vehicle Lockout Service</option>
+                            <option value="mechanical">Mechanical Assistance</option>
+                            <option value="accident">Accident Assistance</option>
+                            <option value="other">Other Emergency</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Your Current Location</label>
+                        <input type="text" name="location" id="location" class="form-control" placeholder="Enter your current location" required>
+                        <small class="text-muted">Please be as specific as possible (address, landmarks, or coordinates)</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Describe Your Emergency</label>
+                        <textarea name="description" id="description" class="form-control" rows="4" placeholder="Please describe your situation in detail..." required></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="provider_email" class="form-label">Select Service Provider (Optional)</label>
+                        <select name="provider_email" id="provider_email" class="form-select">
+                            <option value="">-- Select a Provider (Optional) --</option>
+                            {% for provider in providers %}
+                                <option value="{{ provider.email }}">{{ provider.name }} {% if provider.location %}({{ provider.location }}){% endif %}</option>
+                            {% endfor %}
+                        </select>
+                        <small class="text-muted">If you don't select a provider, we will assign the nearest available one</small>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-ambulance me-2"></i> Request Urgent Help
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add optional geolocation feature
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if the browser supports geolocation
+        if (navigator.geolocation) {
+            // Add a button to get current location
+            const locationField = document.getElementById('location');
+            const locationLabel = document.querySelector('label[for="location"]');
+            
+            const locateBtn = document.createElement('button');
+            locateBtn.type = 'button';
+            locateBtn.className = 'btn btn-sm btn-outline-primary ms-2';
+            locateBtn.innerHTML = '<i class="fas fa-map-marker-alt"></i> Use My Location';
+            locateBtn.onclick = function(e) {
+                e.preventDefault();
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    locationField.value = `Latitude: ${lat}, Longitude: ${lng}`;
+                }, function(error) {
+                    console.error("Error getting location:", error);
+                    alert("Could not get your current location. Please enter it manually.");
+                });
+            };
+            
+            locationLabel.appendChild(locateBtn);
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Rental Details - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="mb-4">My Rental Booking</h1>
+    
+    <div class="service-details animate-card">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ rental.vehicle_type|capitalize }} Rental</h5>
+                <span class="badge bg-{{ 'success' if rental.status == 'completed' or rental.status == 'confirmed' else 'warning' if rental.status == 'pending' else 'danger' }}">
+                    {{ rental.status|capitalize }}
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Rental ID:</dt>
+                            <dd class="col-sm-8">{{ rental.rental_id }}</dd>
+                            
+                            <dt class="col-sm-4">Vehicle Type:</dt>
+                            <dd class="col-sm-8">{{ rental.vehicle_type|capitalize }}</dd>
+                            
+                            <dt class="col-sm-4">Status:</dt>
+                            <dd class="col-sm-8">
+                                <span class="status-{{ rental.status }}">
+                                    <i class="fas fa-circle me-1"></i>{{ rental.status|capitalize }}
+                                </span>
+                            </dd>
+                            
+                            {% if rental.get('provider_name') %}
+                            <dt class="col-sm-4">Provider:</dt>
+                            <dd class="col-sm-8">{{ rental.provider_name }}</dd>
+                            {% endif %}
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Pickup Date:</dt>
+                            <dd class="col-sm-8">{{ rental.pickup_date }}</dd>
+                            
+                            <dt class="col-sm-4">Dropoff Date:</dt>
+                            <dd class="col-sm-8">{{ rental.dropoff_date }}</dd>
+                            
+                            <dt class="col-sm-4">Pickup Location:</dt>
+                            <dd class="col-sm-8">{{ rental.pickup_location }}</dd>
+                            
+                            <dt class="col-sm-4">Created At:</dt>
+                            <dd class="col-sm-8">{{ rental.created_at }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                {% if rental.get('vehicle_details') %}
+                <div class="mt-3">
+                    <h5>Vehicle Details</h5>
+                    <p>{{ rental.vehicle_details }}</p>
+                </div>
+                {% endif %}
+                
+                {% if rental.get('rental_cost') %}
+                <div class="mt-3">
+                    <h5>Rental Cost</h5>
+                    <p>${{ rental.rental_cost }}</p>
+                </div>
+                {% endif %}
+                
+                {% if rental.status == 'pending' %}
+                <div class="alert alert-info mt-3">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Your booking is pending confirmation. We'll notify you once it's confirmed by the provider.
+                </div>
+                {% elif rental.status == 'confirmed' %}
+                <div class="alert alert-success mt-3">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Your booking has been confirmed! Please collect your vehicle at the specified pickup date and location.
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                
+                {% if rental.status == 'pending' %}
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelRentalModal">
+                    <i class="fas fa-times me-1"></i>Cancel Booking
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Modal -->
+{% if rental.status == 'pending' %}
+<div class="modal fade" id="cancelRentalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cancel Rental Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this rental booking?</p>
+                <p class="text-danger"><small>This action cannot be undone.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="{{ url_for('rental_details', rental_id=rental.rental_id) }}" method="post">
+                    <input type="hidden" name="action" value="cancel">
+                    <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

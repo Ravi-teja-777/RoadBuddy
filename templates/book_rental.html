@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Book a Vehicle Rental - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="section-title">Book a Vehicle Rental</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-section">
+                <form action="{{ url_for('book_rental') }}" method="post">
+                    <div class="mb-3">
+                        <label for="vehicle_type" class="form-label">Vehicle Type</label>
+                        <select name="vehicle_type" id="vehicle_type" class="form-select" required>
+                            <option value="">-- Select Vehicle Type --</option>
+                            <option value="compact">Compact Car</option>
+                            <option value="sedan">Sedan</option>
+                            <option value="suv">SUV</option>
+                            <option value="luxury">Luxury Car</option>
+                            <option value="convertible">Convertible</option>
+                            <option value="van">Van/Minivan</option>
+                            <option value="pickup">Pickup Truck</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="rv">RV/Camper</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="pickup_date" class="form-label">Pickup Date</label>
+                            <input type="date" name="pickup_date" id="pickup_date" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dropoff_date" class="form-label">Dropoff Date</label>
+                            <input type="date" name="dropoff_date" id="dropoff_date" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="pickup_location" class="form-label">Pickup Location</label>
+                        <input type="text" name="pickup_location" id="pickup_location" class="form-control" placeholder="Enter pickup location" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="provider_email" class="form-label">Select Rental Provider</label>
+                        <select name="provider_email" id="provider_email" class="form-select">
+                            <option value="">-- Select a Provider (Optional) --</option>
+                            {% for provider in providers %}
+                                <option value="{{ provider.email }}">{{ provider.name }} {% if provider.location %}({{ provider.location }}){% endif %}</option>
+                            {% endfor %}
+                        </select>
+                        <small class="text-muted">If you don't select a provider, we will find the best available one</small>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-car me-2"></i> Book Rental
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set minimum date for pickup to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('pickup_date').setAttribute('min', today);
+        
+        // When pickup date changes, set minimum dropoff date to pickup date
+        document.getElementById('pickup_date').addEventListener('change', function() {
+            document.getElementById('dropoff_date').setAttribute('min', this.value);
+            
+            // If dropoff date is earlier than pickup date, update it
+            const dropoffElem = document.getElementById('dropoff_date');
+            if (dropoffElem.value && dropoffElem.value < this.value) {
+                dropoffElem.value = this.value;
+            }
+        });
+    });
+</script>
+{% endblock %}

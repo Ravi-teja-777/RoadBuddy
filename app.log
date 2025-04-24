@@ -1,0 +1,631 @@
+2025-04-24 15:54:12,420 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 15:54:12,421 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 15:54:19,198 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:19] "GET / HTTP/1.1" 200 -
+2025-04-24 15:54:22,673 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:22] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-24 15:54:33,714 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:33] "GET /register HTTP/1.1" 200 -
+2025-04-24 15:54:39,346 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:39] "GET /login HTTP/1.1" 200 -
+2025-04-24 15:54:42,233 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:42] "GET /contact HTTP/1.1" 200 -
+2025-04-24 15:54:47,150 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:47] "GET /login HTTP/1.1" 200 -
+2025-04-24 15:54:50,164 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:50] "GET /about HTTP/1.1" 200 -
+2025-04-24 15:54:57,812 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:54:57] "GET /register HTTP/1.1" 200 -
+2025-04-24 15:55:01,961 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:55:01] "GET /about HTTP/1.1" 200 -
+2025-04-24 15:55:12,376 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:55:12] "GET / HTTP/1.1" 200 -
+2025-04-24 15:59:36,806 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 15:59:36,806 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 15:59:51,961 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 15:59:51] "GET / HTTP/1.1" 200 -
+2025-04-24 16:00:14,785 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:00:14] "GET / HTTP/1.1" 200 -
+2025-04-24 16:00:16,737 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:00:16] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:03:04,637 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:03:04] "GET / HTTP/1.1" 200 -
+2025-04-24 16:08:21,704 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:08:21] "GET / HTTP/1.1" 200 -
+2025-04-24 16:08:23,217 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:08:23] "GET / HTTP/1.1" 200 -
+2025-04-24 16:09:05,772 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:09:05,772 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:09:10,767 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:10] "GET / HTTP/1.1" 200 -
+2025-04-24 16:09:26,141 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:26] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:09:32,691 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:32] "GET / HTTP/1.1" 200 -
+2025-04-24 16:09:38,231 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:38] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:09:43,908 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:43] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:09:47,813 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:47] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:09:49,712 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:49] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:09:51,405 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:09:51] "GET / HTTP/1.1" 200 -
+2025-04-24 16:16:28,526 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:16:28,527 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:16:52,171 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:16:52] "GET / HTTP/1.1" 200 -
+2025-04-24 16:17:11,543 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:17:11] "GET / HTTP/1.1" 200 -
+2025-04-24 16:17:18,961 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:17:18] "GET / HTTP/1.1" 200 -
+2025-04-24 16:22:49,691 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:22:49,692 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:23:01,702 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:23:01] "GET / HTTP/1.1" 200 -
+2025-04-24 16:26:37,955 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:26:37,956 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:26:40,964 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:26:40] "GET / HTTP/1.1" 200 -
+2025-04-24 16:26:56,427 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:26:56] "GET / HTTP/1.1" 200 -
+2025-04-24 16:26:57,877 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:26:57] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:27:01,587 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:01] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:27:09,316 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:09] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:27:14,709 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:14] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:27:20,884 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:20] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:27:22,235 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:22] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:27:23,314 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:23] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:27:27,048 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:27] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:27:36,622 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:36] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:27:38,630 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:38] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:27:42,956 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:27:42] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:28:29,587 - app - ERROR - Exception on /register [POST]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 191, in register
+    existing_user = user_table.get_item(Key={'email': email}).get('Item')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\factory.py", line 581, in do_action
+    response = action(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1005, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1029, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 198, in sign
+    auth.add_auth(request)
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\auth.py", line 424, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2025-04-24 16:28:29,991 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:28:29] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
+2025-04-24 16:28:36,771 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:28:36] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:28:44,242 - app - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 247, in login
+    user = user_table.get_item(Key={'email': email}).get('Item')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\factory.py", line 581, in do_action
+    response = action(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1005, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1029, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 198, in sign
+    auth.add_auth(request)
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\auth.py", line 424, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2025-04-24 16:28:44,248 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:28:44] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-24 16:28:50,973 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:28:50] "GET / HTTP/1.1" 200 -
+2025-04-24 16:28:55,403 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:28:55] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:29:00,370 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:00] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:29:04,507 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:04] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:29:06,875 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:06] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:29:10,434 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:10] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:29:11,464 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:11] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:29:12,728 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:29:12] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:34:05,083 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:34:05,083 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:34:08,460 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:08] "GET / HTTP/1.1" 200 -
+2025-04-24 16:34:11,702 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:11] "GET /about HTTP/1.1" 200 -
+2025-04-24 16:34:13,306 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+    <a href="{{ url_for('forgot_password') }}" class="small">Forgot password?</a>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:34:13,449 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:13] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:34:18,636 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:18] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:34:30,468 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+    <a href="{{ url_for('forgot_password') }}" class="small">Forgot password?</a>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:34:30,472 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:30] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:34:36,238 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:36] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:34:41,518 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:41] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:34:46,502 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+    <a href="{{ url_for('forgot_password') }}" class="small">Forgot password?</a>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:34:46,507 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:46] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:34:57,604 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+    <a href="{{ url_for('forgot_password') }}" class="small">Forgot password?</a>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:34:57,608 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:34:57] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:35:06,953 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:35:06,959 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:06] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:35:10,931 - app - ERROR - Exception on /login [GET]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 273, in login
+    return render_template('login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 150, in render_template
+    return _render(app, template, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\templating.py", line 131, in _render
+    rv = template.render(context)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 1295, in render
+    self.environment.handle_exception()
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\jinja2\environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\base.html", line 417, in top-level template code
+    {% block content %}{% endblock %}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\templates\login.html", line 153, in block 'content'
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1084, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1073, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\werkzeug\routing\map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'forgot_password'. Did you mean 'dashboard' instead?
+2025-04-24 16:35:10,936 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:10] "[35m[1mGET /login HTTP/1.1[0m" 500 -
+2025-04-24 16:35:22,095 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:35:22,095 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:35:25,259 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:25] "GET / HTTP/1.1" 200 -
+2025-04-24 16:35:26,972 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:26] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:35:28,522 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:28] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:35:52,426 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:35:52] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:39:34,656 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:39:34,657 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:39:38,123 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:39:38] "GET / HTTP/1.1" 200 -
+2025-04-24 16:39:40,684 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:39:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-24 16:39:43,132 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:39:43] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:39:53,376 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:39:53] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:39:56,728 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:39:56] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:40:01,041 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:40:01] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:42:03,988 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:42:03,988 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:42:07,279 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:42:07] "GET / HTTP/1.1" 200 -
+2025-04-24 16:42:09,442 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:42:09] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:42:14,558 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:42:14] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:42:20,148 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:42:20] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:42:27,992 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:42:27] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:45:32,716 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.133.192:5000
+2025-04-24 16:45:32,717 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-04-24 16:45:36,127 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:36] "GET / HTTP/1.1" 200 -
+2025-04-24 16:45:40,099 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:40] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:45:48,398 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:48] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:45:53,999 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:53] "GET /contact HTTP/1.1" 200 -
+2025-04-24 16:45:57,387 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:57] "GET / HTTP/1.1" 200 -
+2025-04-24 16:45:59,313 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:45:59] "GET /register HTTP/1.1" 200 -
+2025-04-24 16:46:28,584 - app - ERROR - Exception on /register [POST]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 191, in register
+    existing_user = user_table.get_item(Key={'email': email}).get('Item')
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\factory.py", line 581, in do_action
+    response = action(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1005, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1029, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 198, in sign
+    auth.add_auth(request)
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\auth.py", line 424, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2025-04-24 16:46:28,602 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:46:28] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
+2025-04-24 16:47:02,143 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:47:02] "GET /login HTTP/1.1" 200 -
+2025-04-24 16:47:09,303 - app - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\OneDrive\Desktop\petrol helper\app.py", line 247, in login
+    user = user_table.get_item(Key={'email': email}).get('Item')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\factory.py", line 581, in do_action
+    response = action(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\boto3\resources\action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 569, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1005, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\client.py", line 1029, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 196, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\endpoint.py", line 132, in create_request
+    self._event_emitter.emit(
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 106, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\signers.py", line 198, in sign
+    auth.add_auth(request)
+  File "C:\Users\saira_ixrlkys\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\botocore\auth.py", line 424, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+2025-04-24 16:47:09,313 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:47:09] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2025-04-24 16:47:15,031 - werkzeug - INFO - 127.0.0.1 - - [24/Apr/2025 16:47:15] "GET /register HTTP/1.1" 200 -

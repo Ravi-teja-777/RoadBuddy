@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Order Food - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="section-title mb-4">Order Food</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-section animate-card">
+                <h4 class="mb-4"><i class="fas fa-utensils me-2"></i>Food Delivery on the Go</h4>
+                
+                <p class="mb-4">Have food delivered to your location while traveling. Perfect for road trips, campgrounds, or when you need a quick meal.</p>
+                
+                <form action="{{ url_for('order_food') }}" method="post">
+                    <div class="mb-3">
+                        <label for="food_items" class="form-label">What would you like to order?*</label>
+                        <textarea class="form-control" id="food_items" name="food_items" rows="3" placeholder="List the food items you would like to order..." required></textarea>
+                        <div class="form-text">Please be specific about food items, quantities, and any special preparation instructions.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="delivery_location" class="form-label">Delivery Location*</label>
+                        <input type="text" class="form-control" id="delivery_location" name="delivery_location" placeholder="Enter your current location for delivery" required>
+                        <div class="form-text">Provide a precise location, landmark, or coordinates for accurate delivery.</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="special_instructions" class="form-label">Special Instructions</label>
+                        <textarea class="form-control" id="special_instructions" name="special_instructions" rows="2" placeholder="Any allergies, dietary restrictions, or delivery instructions..."></textarea>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Note:</strong> Delivery times may vary based on your location and distance from restaurants. You'll receive an estimated delivery time after your order is confirmed.
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary px-4 py-2">
+                            <i class="fas fa-paper-plane me-2"></i>Place Order
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary px-4 py-2 ms-2">
+                            <i class="fas fa-arrow-left me-2"></i>Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Add any page-specific JavaScript here
+    $(document).ready(function() {
+        // Example: Dynamic character counter for text areas
+        $('#food_items').on('input', function() {
+            let chars = $(this).val().length;
+            if (chars > 500) {
+                $(this).addClass('is-invalid');
+            } else {
+                $(this).removeClass('is-invalid');
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}About RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <div class="container">
+        <h1>About RoadBuddy</h1>
+        <p>Your trusted companion for all travel emergencies and services</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="section-title">
+                <h2>Our Mission</h2>
+            </div>
+            <p class="lead text-center">
+                RoadBuddy was founded with a simple mission: to make road travel safer, more convenient, and stress-free for everyone.
+            </p>
+            <p class="text-center">
+                We believe that whether you're on a cross-country adventure or just commuting to work, you should have peace of mind knowing that help is just a few clicks away.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="section-title">
+                <h2>Our Services</h2>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box animate-card">
+                <i class="fas fa-tools"></i>
+                <h3>Emergency Assistance</h3>
+                <p>24/7 roadside assistance for breakdowns, flat tires, battery issues, and more.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box animate-card">
+                <i class="fas fa-car"></i>
+                <h3>Vehicle Rentals</h3>
+                <p>Flexible car, bike, and specialized vehicle rentals for your transportation needs.</p>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="feature-box animate-card">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Trip Planning</h3>
+                <p>Customized trip planning and booking services for unforgettable adventures.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card animate-card">
+                <div class="card-header">
+                    For Service Providers
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Join Our Network</h5>
+                    <p class="card-text">
+                        Are you a mechanic, rental service owner, or travel expert? Partner with RoadBuddy to expand your customer base and grow your business.
+                    </p>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register as Provider</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card animate-card">
+                <div class="card-header">
+                    For Travelers
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Peace of Mind on Every Journey</h5>
+                    <p class="card-text">
+                        With RoadBuddy, you're never alone on the road. Get access to immediate assistance, vehicle rentals, and more.
+                    </p>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Register as Customer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-8 offset-md-2">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <p class="text-center">
+                RoadBuddy is powered by a passionate team of travel enthusiasts, tech experts, and customer service professionals dedicated to making your journey smooth and enjoyable.
+            </p>
+            <p class="text-center">
+                We are constantly working to improve our services and expand our network of trusted providers across the country.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

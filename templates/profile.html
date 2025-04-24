@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="form-section animate-card">
+                <h2 class="section-title">Your Profile</h2>
+                
+                <div class="text-center mb-4">
+                    <!-- Default profile image -->
+                    <img src="https://placehold.co/150x150" alt="Profile Image" class="profile-image">
+                    <h3>{{ user.name }}</h3>
+                    <p class="text-muted">{{ session.role|capitalize }}</p>
+                </div>
+
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" value="{{ user.email }}" readonly>
+                        <small class="text-muted">Email cannot be changed</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ user.phone }}" required>
+                    </div>
+                    
+                    {% if session.role == 'provider' %}
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Service Area</label>
+                            <input type="text" class="form-control" id="location" name="location" value="{{ user.location }}">
+                            <small class="text-muted">Enter the areas where you provide services</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Service Types</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="service_types" value="towing" id="service_towing" 
+                                    {% if 'towing' in user.service_types|default([]) %}checked{% endif %}>
+                                <label class="form-check-label" for="service_towing">Towing</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="service_types" value="repair" id="service_repair"
+                                    {% if 'repair' in user.service_types|default([]) %}checked{% endif %}>
+                                <label class="form-check-label" for="service_repair">Repair</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="service_types" value="fuel" id="service_fuel"
+                                    {% if 'fuel' in user.service_types|default([]) %}checked{% endif %}>
+                                <label class="form-check-label" for="service_fuel">Fuel Delivery</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="service_types" value="rental" id="service_rental"
+                                    {% if 'rental' in user.service_types|default([]) %}checked{% endif %}>
+                                <label class="form-check-label" for="service_rental">Vehicle Rental</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="service_types" value="food_delivery" id="service_food"
+                                    {% if 'food_delivery' in user.service_types|default([]) %}checked{% endif %}>
+                                <label class="form-check-label" for="service_food">Food Delivery</label>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                </form>
+                
+                {% if session.role == 'provider' %}
+                <div class="mt-4 d-grid gap-2">
+                    <a href="{{ url_for('add_vehicle') }}" class="btn btn-secondary">
+                        <i class="fas fa-car"></i> Add Vehicle
+                    </a>
+                </div>
+                {% endif %}
+                
+                <div class="mt-4">
+                    <h4>Account Details</h4>
+                    <dl class="row">
+                        <dt class="col-sm-4">Account Created</dt>
+                        <dd class="col-sm-8">{{ user.created_at|default('N/A') }}</dd>
+                        
+                        <dt class="col-sm-4">Login Count</dt>
+                        <dd class="col-sm-8">{{ user.login_count|default('0') }}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

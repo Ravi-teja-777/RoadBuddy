@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Add Vehicle - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="form-section animate-card">
+                <h2 class="section-title">Add a Vehicle</h2>
+                
+                <form method="POST" action="{{ url_for('add_vehicle') }}">
+                    <div class="mb-3">
+                        <label for="vehicle_type" class="form-label">Vehicle Type</label>
+                        <select class="form-select" id="vehicle_type" name="vehicle_type" required>
+                            <option value="" selected disabled>Select vehicle type</option>
+                            <option value="Car">Car</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Van">Van</option>
+                            <option value="Truck">Truck</option>
+                            <option value="Motorcycle">Motorcycle</option>
+                            <option value="Bicycle">Bicycle</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-8 mb-3">
+                            <label for="model" class="form-label">Make & Model</label>
+                            <input type="text" class="form-control" id="model" name="model" required 
+                                placeholder="e.g. Toyota Camry">
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="year" class="form-label">Year</label>
+                            <input type="number" class="form-control" id="year" name="year" required 
+                                min="1990" max="2025" placeholder="e.g. 2022">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="license_plate" class="form-label">License Plate Number</label>
+                        <input type="text" class="form-control" id="license_plate" name="license_plate" required
+                            placeholder="e.g. ABC123">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="rental_rate" class="form-label">Daily Rental Rate ($)</label>
+                        <input type="number" class="form-control" id="rental_rate" name="rental_rate" required
+                            min="1" step="0.01" placeholder="e.g. 49.99">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Vehicle Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4"
+                            placeholder="Describe your vehicle's features, condition, seating capacity, etc."></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Features (optional)</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_ac" name="features" value="AC">
+                                    <label class="form-check-label" for="feature_ac">Air Conditioning</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_gps" name="features" value="GPS">
+                                    <label class="form-check-label" for="feature_gps">GPS Navigation</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_bluetooth" name="features" value="Bluetooth">
+                                    <label class="form-check-label" for="feature_bluetooth">Bluetooth</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_auto" name="features" value="Automatic">
+                                    <label class="form-check-label" for="feature_auto">Automatic Transmission</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_child" name="features" value="Child Seat">
+                                    <label class="form-check-label" for="feature_child">Child Seat</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="feature_pet" name="features" value="Pet Friendly">
+                                    <label class="form-check-label" for="feature_pet">Pet Friendly</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-plus-circle"></i> Add Vehicle
+                        </button>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

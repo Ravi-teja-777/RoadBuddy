@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Service Request Details - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="mb-4">Service Request Details</h1>
+    
+    <div class="service-details animate-card">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ service.service_type|capitalize }} Service</h5>
+                <span class="badge bg-{{ 'success' if service.status == 'completed' else 'warning' if service.status == 'pending' else 'info' if service.status == 'accepted' else 'danger' }}">
+                    {{ service.status|capitalize }}
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Service ID:</dt>
+                            <dd class="col-sm-8">{{ service.service_id }}</dd>
+                            
+                            <dt class="col-sm-4">Service Type:</dt>
+                            <dd class="col-sm-8">{{ service.service_type|capitalize }}</dd>
+                            
+                            <dt class="col-sm-4">Location:</dt>
+                            <dd class="col-sm-8">{{ service.location }}</dd>
+                            
+                            <dt class="col-sm-4">Status:</dt>
+                            <dd class="col-sm-8">
+                                <span class="status-{{ service.status }}">
+                                    <i class="fas fa-circle me-1"></i>{{ service.status|capitalize }}
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Created At:</dt>
+                            <dd class="col-sm-8">{{ service.created_at }}</dd>
+                            
+                            {% if service.get('updated_at') %}
+                            <dt class="col-sm-4">Updated At:</dt>
+                            <dd class="col-sm-8">{{ service.updated_at }}</dd>
+                            {% endif %}
+                            
+                            {% if service.get('provider_name') %}
+                            <dt class="col-sm-4">Provider:</dt>
+                            <dd class="col-sm-8">{{ service.provider_name }}</dd>
+                            {% endif %}
+                            
+                            {% if service.get('cost') %}
+                            <dt class="col-sm-4">Service Cost:</dt>
+                            <dd class="col-sm-8">${{ service.cost }}</dd>
+                            {% endif %}
+                        </dl>
+                    </div>
+                </div>
+                
+                <div class="mt-3">
+                    <h5>Description</h5>
+                    <p class="card-text">{{ service.description }}</p>
+                </div>
+                
+                {% if service.get('service_notes') %}
+                <div class="mt-3">
+                    <h5>Service Notes</h5>
+                    <p class="card-text">{{ service.service_notes }}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                
+                {% if service.status == 'pending' %}
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelServiceModal">
+                    <i class="fas fa-times me-1"></i>Cancel Request
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Modal -->
+{% if service.status == 'pending' %}
+<div class="modal fade" id="cancelServiceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cancel Service Request</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to cancel this service request?</p>
+                <p class="text-danger"><small>This action cannot be undone.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="{{ url_for('service_details', service_id=service.service_id) }}" method="post">
+                    <input type="hidden" name="action" value="cancel">
+                    <button type="submit" class="btn btn-danger">Confirm Cancellation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

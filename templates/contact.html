@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Contact RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="banner">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>We're here to help with any questions or concerns</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-section animate-card">
+                <h3 class="mb-4">Send us a message</h3>
+                <form method="POST" action="{{ url_for('contact') }}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="form-section animate-card">
+                <h3 class="mb-4">Contact Information</h3>
+                <p>
+                    <i class="fas fa-map-marker-alt me-2 text-primary"></i> 123 Road Avenue, Travel City, TC 12345
+                </p>
+                <p>
+                    <i class="fas fa-phone me-2 text-primary"></i> +1 (555) 123-4567
+                </p>
+                <p>
+                    <i class="fas fa-envelope me-2 text-primary"></i> support@roadbuddy.com
+                </p>
+                <hr>
+                <h4 class="mb-3">Hours of Operation</h4>
+                <p>
+                    <strong>Customer Support:</strong> 24/7 Emergency Assistance
+                </p>
+                <p>
+                    <strong>Office Hours:</strong> Monday - Friday: 9 AM - 6 PM
+                </p>
+                <hr>
+                <h4 class="mb-3">Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="me-3"><i class="fab fa-facebook-f fa-2x text-primary"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-twitter fa-2x text-primary"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-instagram fa-2x text-primary"></i></a>
+                    <a href="#" class="me-3"><i class="fab fa-linkedin-in fa-2x text-primary"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="form-section animate-card">
+                <h3 class="mb-4">Frequently Asked Questions</h3>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                How quickly can I expect assistance after requesting a service?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Our goal is to connect you with a service provider within 15-30 minutes of your request, depending on your location and the type of service needed.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                How do I cancel a service request or rental booking?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                You can cancel a pending service request or booking from your dashboard. If the service has already been accepted or is in progress, please contact our customer support.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                How do I become a service provider on RoadBuddy?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Simply register as a provider on our platform, complete your profile with your qualifications and services, and start accepting service requests immediately.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block title %}Customer Dashboard - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome, {{ session.name }}!</h1>
+    
+    <!-- Quick Action Buttons -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Quick Actions</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ url_for('request_service') }}" class="btn btn-primary">
+                            <i class="fas fa-tools me-2"></i> Request Emergency Service
+                        </a>
+                        <a href="{{ url_for('book_rental') }}" class="btn btn-primary">
+                            <i class="fas fa-car me-2"></i> Book a Vehicle
+                        </a>
+                        <a href="{{ url_for('book_trip') }}" class="btn btn-primary">
+                            <i class="fas fa-map-marked-alt me-2"></i> Plan a Trip
+                        </a>
+                        <a href="{{ url_for('order_food') }}" class="btn btn-primary">
+                            <i class="fas fa-utensils me-2"></i> Order Food
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Search Box -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ url_for('search') }}" method="POST" class="d-flex gap-2">
+                        <input type="text" name="search_term" class="form-control" placeholder="Search your requests, bookings..." required>
+                        <select name="search_type" class="form-select" style="width: auto;">
+                            <option value="all">All</option>
+                            <option value="services">Services</option>
+                            <option value="rentals">Rentals</option>
+                            <option value="trips">Trips</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Dashboard Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-3 col-sm-6">
+            <div class="dashboard-stat">
+                <i class="fas fa-tools"></i>
+                <h3>{{ service_requests|length }}</h3>
+                <p>Service Requests</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="dashboard-stat">
+                <i class="fas fa-car"></i>
+                <h3>{{ rentals|length }}</h3>
+                <p>Vehicle Rentals</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="dashboard-stat">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>{{ trips|length }}</h3>
+                <p>Trip Bookings</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="dashboard-stat">
+                <i class="fas fa-calendar-check"></i>
+                <h3>
+                    {% set active_count = 0 %}
+                    {% for service in service_requests if service.status == 'accepted' %}
+                        {% set active_count = active_count + 1 %}
+                    {% endfor %}
+                    {% for rental in rentals if rental.status == 'confirmed' %}
+                        {% set active_count = active_count + 1 %}
+                    {% endfor %}
+                    {{ active_count }}
+                </h3>
+                <p>Active Services</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Service Requests Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Service Requests</h5>
+                    <a href="{{ url_for('request_service') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i> New Request
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if service_requests %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Service Type</th>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for service in service_requests %}
+                                        <tr>
+                                            <td>{{ service.service_type|capitalize }}</td>
+                                            <td>{{ service.location }}</td>
+                                            <td>{{ service.created_at.split('T')[0] }}</td>
+                                            <td>
+                                                <span class="badge status-{{ service.status }}">
+                                                    {{ service.status|capitalize }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('service_details', service_id=service.service_id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i> Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center mb-0">No service requests found. <a href="{{ url_for('request_service') }}">Request a service</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vehicle Rentals Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Vehicle Rentals</h5>
+                    <a href="{{ url_for('book_rental') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i> Book Rental
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if rentals %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Vehicle Type</th>
+                                        <th>Pickup Date</th>
+                                        <th>Return Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rental in rentals %}
+                                        <tr>
+                                            <td>{{ rental.vehicle_type|capitalize }}</td>
+                                            <td>{{ rental.pickup_date }}</td>
+                                            <td>{{ rental.dropoff_date }}</td>
+                                            <td>
+                                                <span class="badge status-{{ rental.status }}">
+                                                    {{ rental.status|capitalize }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('rental_details', rental_id=rental.rental_id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i> Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center mb-0">No vehicle rentals found. <a href="{{ url_for('book_rental') }}">Book a vehicle</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Trip Bookings Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Trip Bookings</h5>
+                    <a href="{{ url_for('book_trip') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i> Book Trip
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if trips %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Destination</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for trip in trips %}
+                                        <tr>
+                                            <td>{{ trip.destination }}</td>
+                                            <td>{{ trip.start_date }}</td>
+                                            <td>{{ trip.end_date }}</td>
+                                            <td>
+                                                <span class="badge status-{{ trip.status }}">
+                                                    {{ trip.status|capitalize }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <a href="{{ url_for('trip_details', trip_id=trip.trip_id) }}" class="btn btn-sm btn-info">
+                                                    <i class="fas fa-eye"></i> Details
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-center mb-0">No trip bookings found. <a href="{{ url_for('book_trip') }}">Book a trip</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

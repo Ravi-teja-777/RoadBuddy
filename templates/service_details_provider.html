@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Service Request Details - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="section-title">Service Request Details</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="h4 mb-0">{{ service.service_type|capitalize }} Service</h2>
+                    <span class="badge bg-secondary status-{{ service.status }}">{{ service.status|capitalize }}</span>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="service-details">
+                                <h3 class="h5 mb-3">Request Information</h3>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Service ID:</dt>
+                                    <dd class="col-sm-8">{{ service.service_id }}</dd>
+                                    
+                                    <dt class="col-sm-4">Request Date:</dt>
+                                    <dd class="col-sm-8">{{ service.created_at.split('T')[0] }} {{ service.created_at.split('T')[1][:5] }}</dd>
+                                    
+                                    <dt class="col-sm-4">Type:</dt>
+                                    <dd class="col-sm-8">{{ service.service_type|capitalize }}</dd>
+                                    
+                                    <dt class="col-sm-4">Status:</dt>
+                                    <dd class="col-sm-8">
+                                        <span class="badge bg-secondary status-{{ service.status }}">
+                                            {{ service.status|capitalize }}
+                                        </span>
+                                    </dd>
+                                    
+                                    <dt class="col-sm-4">Location:</dt>
+                                    <dd class="col-sm-8">{{ service.location }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-details">
+                                <h3 class="h5 mb-3">Customer Information</h3>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Name:</dt>
+                                    <dd class="col-sm-8">{{ service.customer_name }}</dd>
+                                    
+                                    <dt class="col-sm-4">Email:</dt>
+                                    <dd class="col-sm-8">{{ service.customer_email }}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-details mt-4">
+                        <h3 class="h5 mb-3">Service Details</h3>
+                        <div class="mb-3">
+                            <strong>Description:</strong>
+                            <p class="mt-2">{{ service.description }}</p>
+                        </div>
+                    </div>
+                    
+                    {% if service.status == 'completed' and service.get('cost') %}
+                    <div class="service-details mt-4">
+                        <h3 class="h5 mb-3">Service Completion</h3>
+                        <dl class="row">
+                            <dt class="col-sm-3">Service Cost:</dt>
+                            <dd class="col-sm-9">${{ service.cost }}</dd>
+                            
+                            {% if service.get('service_notes') %}
+                            <dt class="col-sm-3">Service Notes:</dt>
+                            <dd class="col-sm-9">{{ service.service_notes }}</dd>
+                            {% endif %}
+                        </dl>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Action Form -->
+                    {% if service.status == 'pending' %}
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3 class="h5 mb-0">Service Actions</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url_for('service_details', service_id=service.service_id) }}" method="post">
+                                <div class="d-flex gap-2">
+                                    <button type="submit" name="action" value="accept" class="btn btn-success">
+                                        <i class="fas fa-check me-2"></i> Accept Request
+                                    </button>
+                                    <button type="submit" name="action" value="cancel" class="btn btn-danger">
+                                        <i class="fas fa-times me-2"></i> Decline Request
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% elif service.status == 'accepted' %}
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h3 class="h5 mb-0">Complete Service</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url_for('service_details', service_id=service.service_id) }}" method="post">
+                                <div class="mb-3">
+                                    <label for="cost" class="form-label">Service Cost ($)</label>
+                                    <input type="number" name="cost" id="cost" class="form-control" min="0" step="0.01" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="service_notes" class="form-label">Service Notes</label>
+                                    <textarea name="service_notes" id="service_notes" class="form-control" rows="3"></textarea>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <button type="submit" name="action" value="complete" class="btn btn-primary">
+                                        <i class="fas fa-check-circle me-2"></i> Mark as Completed
+                                    </button>
+                                    <button type="submit" name="action" value="cancel" class="btn btn-danger">
+                                        <i class="fas fa-ban me-2"></i> Cancel Service
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}+

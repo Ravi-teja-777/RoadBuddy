@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Rental Details - Provider View - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h1 class="mb-4">Rental Booking Details</h1>
+    
+    <div class="service-details animate-card">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">{{ rental.vehicle_type|capitalize }} Rental</h5>
+                <span class="badge bg-{{ 'success' if rental.status == 'completed' or rental.status == 'confirmed' else 'warning' if rental.status == 'pending' else 'danger' }}">
+                    {{ rental.status|capitalize }}
+                </span>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Rental ID:</dt>
+                            <dd class="col-sm-8">{{ rental.rental_id }}</dd>
+                            
+                            <dt class="col-sm-4">Vehicle Type:</dt>
+                            <dd class="col-sm-8">{{ rental.vehicle_type|capitalize }}</dd>
+                            
+                            <dt class="col-sm-4">Customer:</dt>
+                            <dd class="col-sm-8">{{ rental.customer_name }}</dd>
+                            
+                            <dt class="col-sm-4">Status:</dt>
+                            <dd class="col-sm-8">
+                                <span class="status-{{ rental.status }}">
+                                    <i class="fas fa-circle me-1"></i>{{ rental.status|capitalize }}
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Pickup Date:</dt>
+                            <dd class="col-sm-8">{{ rental.pickup_date }}</dd>
+                            
+                            <dt class="col-sm-4">Dropoff Date:</dt>
+                            <dd class="col-sm-8">{{ rental.dropoff_date }}</dd>
+                            
+                            <dt class="col-sm-4">Pickup Location:</dt>
+                            <dd class="col-sm-8">{{ rental.pickup_location }}</dd>
+                            
+                            <dt class="col-sm-4">Created At:</dt>
+                            <dd class="col-sm-8">{{ rental.created_at }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                {% if rental.get('vehicle_details') %}
+                <div class="mt-3">
+                    <h5>Vehicle Details</h5>
+                    <p>{{ rental.vehicle_details }}</p>
+                </div>
+                {% endif %}
+                
+                {% if rental.get('rental_cost') %}
+                <div class="mt-3">
+                    <h5>Rental Cost</h5>
+                    <p>${{ rental.rental_cost }}</p>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+                </a>
+                
+                {% if rental.status == 'pending' %}
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#confirmRentalModal">
+                    <i class="fas fa-check me-1"></i>Confirm Booking
+                </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancelRentalModal">
+                    <i class="fas fa-times me-1"></i>Decline Booking
+                </button>
+                {% elif rental.status == 'confirmed' %}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#completeRentalModal">
+                    <i class="fas fa-check-circle me-1"></i>Mark as Completed
+                </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm Modal -->
+{% if rental.status == 'pending' %}
+<div class="modal fade" id="confirmRentalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Rental Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ url_for('rental_details', rental_id=rental.rental_id) }}" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="action" value="confirm">
+                    
+                    <div class="mb-3">
+                        <label for="vehicle_id" class="form-label">Vehicle ID</label>
+                        <input type="text" class="form-control" id="vehicle_id" name="vehicle_id" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="vehicle_details" class="form-label">Vehicle Details</label>
+                        <textarea class="form-control" id="vehicle_details" name="vehicle_details" rows="3" placeholder="Model, color, year, etc." required></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="rental_cost" class="form-label">Rental Cost ($)</label>
+                        <input type="number" class="form-control" id="rental_cost" name="rental_cost" min="0" step="0.01" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Confirm Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Modal -->
+<div class="modal fade" id="cancelRentalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Decline Rental Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to decline this rental booking?</p>
+                <p class="text-danger"><small>This action cannot be undone.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="{{ url_for('rental_details', rental_id=rental.rental_id) }}" method="post">
+                    <input type="hidden" name="action" value="cancel">
+                    <button type="submit" class="btn btn-danger">Confirm Decline</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Complete Modal -->
+{% if rental.status == 'confirmed' %}
+<div class="modal fade" id="completeRentalModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Complete Rental</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you confirming that this rental has been completed?</p>
+                <p><small>This will update the rental status to completed.</small></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form action="{{ url_for('rental_details', rental_id=rental.rental_id) }}" method="post">
+                    <input type="hidden" name="action" value="complete">
+                    <button type="submit" class="btn btn-primary">Mark as Completed</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

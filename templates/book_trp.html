@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Book a Trip - RoadBuddy{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="section-title">Book a Trip</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="form-section">
+                <form action="{{ url_for('book_trip') }}" method="post">
+                    <div class="mb-3">
+                        <label for="destination" class="form-label">Destination</label>
+                        <input type="text" name="destination" id="destination" class="form-control" placeholder="Where do you want to go?" required>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="start_date" class="form-label">Start Date</label>
+                            <input type="date" name="start_date" id="start_date" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="end_date" class="form-label">End Date</label>
+                            <input type="date" name="end_date" id="end_date" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="num_people" class="form-label">Number of People</label>
+                        <input type="number" name="num_people" id="num_people" class="form-control" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="trip_type" class="form-label">Trip Type</label>
+                        <select name="trip_type" id="trip_type" class="form-select" required>
+                            <option value="Standard">Standard Package</option>
+                            <option value="Premium">Premium Package</option>
+                            <option value="Adventure">Adventure Package</option>
+                            <option value="Family">Family Package</option>
+                            <option value="Luxury">Luxury Experience</option>
+                            <option value="Custom">Custom Trip</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="special_requests" class="form-label">Special Requests</label>
+                        <textarea name="special_requests" id="special_requests" class="form-control" rows="3" placeholder="Any specific requirements or requests..."></textarea>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-map-marked-alt me-2"></i> Book Trip
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set minimum date for start date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('start_date').setAttribute('min', today);
+        
+        // When start date changes, set minimum end date to start date
+        document.getElementById('start_date').addEventListener('change', function() {
+            document.getElementById('end_date').setAttribute('min', this.value);
+            
+            // If end date is earlier than start date, update it
+            const endElem = document.getElementById('end_date');
+            if (endElem.value && endElem.value < this.value) {
+                endElem.value = this.value;
+            }
+        });
+        
+        // Trip type change event
+        document.getElementById('trip_type').addEventListener('change', function() {
+            // Could add functionality to display different options based on trip type
+            const tripType = this.value;
+            
+            if (tripType === 'Custom') {
+                document.getElementById('special_requests').setAttribute('required', 'required');
+                document.getElementById('special_requests').setAttribute('placeholder', 'Please describe your custom trip requirements in detail...');
+            } else {
+                document.getElementById('special_requests').removeAttribute('required');
+                document.getElementById('special_requests').setAttribute('placeholder', 'Any specific requirements or requests...');
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}RoadBuddy - Your Trusted Travel Companion{% endblock %}
+
+{% block content %}
+<!-- Hero Banner -->
+<div class="banner">
+    <div class="container">
+        <h1>Welcome to RoadBuddy</h1>
+        <p>Your comprehensive travel companion for emergency services, vehicle rentals, and trip planning. Experience worry-free travel with RoadBuddy by your side.</p>
+        <div>
+            {% if not session.get('email') %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg me-2">Get Started</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Login</a>
+            {% else %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Features Section -->
+    <section class="mb-5">
+        <h2 class="section-title">Our Services</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box animate-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Emergency Services</h3>
+                    <p>Get immediate assistance for vehicle breakdowns, towing, flat tires, and more. Our network of service providers is available 24/7.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box animate-card">
+                    <i class="fas fa-car"></i>
+                    <h3>Vehicle Rentals</h3>
+                    <p>Choose from a wide variety of vehicles for your journey. Easy booking process with flexible pickup and drop-off options.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box animate-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Trip Planning</h3>
+                    <p>Plan your perfect trip with customized itineraries, accommodation booking, and activity suggestions by travel experts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="mb-5">
+        <h2 class="section-title">How It Works</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-user-plus fa-2x"></i>
+                                    </div>
+                                    <h5>Register</h5>
+                                    <p class="small">Create your account as a customer or service provider</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-search fa-2x"></i>
+                                    </div>
+                                    <h5>Select Service</h5>
+                                    <p class="small">Choose from emergency services, rentals, or trips</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-paper-plane fa-2x"></i>
+                                    </div>
+                                    <h5>Submit Request</h5>
+                                    <p class="small">Fill out your service details and submit</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <div class="rounded-circle bg-primary text-white d-inline-flex justify-content-center align-items-center mb-3" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-check-circle fa-2x"></i>
+                                    </div>
+                                    <h5>Get Service</h5>
+                                    <p class="small">Receive confirmation and enjoy your service</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="mb-5">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text">"RoadBuddy saved our trip! We had a flat tire in the middle of nowhere, and within an hour, help arrived. The service was fantastic!"</p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <h5 class="mb-0">Sarah Johnson</h5>
+                        <small class="text-muted">Adventure Traveler</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text">"Renting a car through RoadBuddy was a breeze. The process was straightforward, and the car was in excellent condition. Will definitely use again!"</p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <h5 class="mb-0">Michael Chen</h5>
+                        <small class="text-muted">Business Traveler</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p class="card-text">"The trip planning service exceeded our expectations. Our family vacation was perfectly organized with great accommodations and activities."</p>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <h5 class="mb-0">Lisa and David Turner</h5>
+                        <small class="text-muted">Family Travelers</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="text-center mb-5 py-4 bg-light rounded">
+        <h2>Ready to experience worry-free travel?</h2>
+        <p class="lead mb-4">Join thousands of satisfied travelers who rely on RoadBuddy for their journey needs.</p>
+        {% if not session.get('email') %}
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Sign Up Now</a>
+        {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
