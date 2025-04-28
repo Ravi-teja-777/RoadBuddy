@@ -170,70 +170,85 @@ def contact():
     return render_template('contact.html')
 
 # Register User (Provider/Customer)
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if is_logged_in():  # Check if already logged in
         return redirect(url_for('dashboard'))
     
     if request.method == 'POST':
-        # Form validation
-        required_fields = ['name', 'email', 'password', 'phone', 'role']
-        for field in required_fields:
-            if field not in request.form or not request.form[field]:
-                flash(f'Please fill in the {field} field', 'danger')
-                return render_template('register.html')
-        
-        # Check if passwords match
-        if request.form['password'] != request.form['confirm_password']:
-            flash('Passwords do not match', 'danger')
-            return render_template('register.html')
-        
-        name = request.form['name']
-        email = request.form['email']
-        password = generate_password_hash(request.form['password'])  # Hash password
-        phone = request.form['phone']
-        role = request.form['role']  # 'provider' or 'customer'
-        
-        # Check if user already exists
-        existing_user = user_table.get_item(Key={'email': email}).get('Item')
-        if existing_user:
-            flash('Email already registered', 'danger')
-            return render_template('register.html')
-
-        # Add user to DynamoDB
-        user_item = {
-            'email': email,
-            'name': name,
-            'password': password,  # Store hashed password
-            'phone': phone,
-            'role': role,
-            'created_at': datetime.now().isoformat(),
-        }
-        
-        # Add service types only for providers
-        if role == 'provider' and 'service_types' in request.form:
-            service_types = request.form.getlist('service_types')
-            user_item['service_types'] = service_types
+        try:
+            # Form validation
+            required_fields = ['name', 'email', 'password', 'phone', 'role']
+            for field in required_fields:
+                if field not in request.form or not request.form[field]:
+                    flash(f'Please fill in the {field} field', 'danger')
+                    return render_template('register.html')
             
-            # Add location for providers
-            if 'location' in request.form:
-                user_item['location'] = request.form['location']
-        
-        user_table.put_item(Item=user_item)
-        
-        # Send welcome email if enabled
-        if ENABLE_EMAIL:
-            welcome_msg = f"Welcome to RoadBuddy, {name}! Your account has been created successfully."
-            send_email(email, "Welcome to RoadBuddy", welcome_msg)
-        
-        # Send admin notification via SNS if configured
-        if ENABLE_SNS:
-            sns_msg = f'New user registered: {name} ({email}) as {role}'
-            publish_to_sns(sns_msg, 'New User Registration - RoadBuddy')
-        
-        flash('Registration successful. Please log in.', 'success')
-        return redirect(url_for('login'))
-    
+            # Check if passwords match
+            if request.form['password'] != request.form['confirm_password']:
+                flash('Passwords do not match', 'danger')
+                return render_template('register.html')
+            
+            name = request.form['name']
+            email = request.form['email']
+            password = generate_password_hash(request.form['password'])  # Hash password
+            phone = request.form['phone']
+            role = request.form['role']  # 'provider' or 'customer'
+            
+            # Check if user already exists
+            try:
+                existing_user = user_table.get_item(Key={'email': email}).get('Item')
+                if existing_user:
+                    flash('Email already registered', 'danger')
+                    return render_template('register.html')
+            except Exception as e:
+                logger.error(f"Error checking existing user: {e}")
+                flash('Error during registration. Please try again later.', 'danger')
+                return render_template('register.html')
+
+            # Add user to DynamoDB
+            user_item = {
+                'email': email,
+                'name': name,
+                'password': password,  # Store hashed password
+                'phone': phone,
+                'role': role,
+                'created_at': datetime.now().isoformat(),
+            }
+            
+            # Add service types only for providers
+            if role == 'provider' and 'service_types' in request.form:
+                service_types = request.form.getlist('service_types')
+                user_item['service_types'] = service_types
+                
+                # Add location for providers
+                if 'location' in request.form:
+                    user_item['location'] = request.form['location']
+            
+            try:
+                user_table.put_item(Item=user_item)
+            except Exception as e:
+                logger.error(f"Error creating user: {e}")
+                flash('Error during registration. Please try again later.', 'danger')
+                return render_template('register.html')
+                
+            # Send welcome email if enabled
+            if ENABLE_EMAIL:
+                welcome_msg = f"Welcome to RoadBuddy, {name}! Your account has been created successfully."
+                send_email(email, "Welcome to RoadBuddy", welcome_msg)
+            
+            # Send admin notification via SNS if configured
+            if ENABLE_SNS:
+                sns_msg = f'New user registered: {name} ({email}) as {role}'
+                publish_to_sns(sns_msg, 'New User Registration - RoadBuddy')
+            
+            flash('Registration successful. Please log in.', 'success')
+            return redirect(url_for('login'))
+        except Exception as e:
+            logger.error(f"Registration error: {e}")
+            flash('An error occurred during registration. Please try again later.', 'danger')
+            
     return render_template('register.html')
 
 # Login User (Provider/Customer)
@@ -243,39 +258,48 @@ def login():
         return redirect(url_for('dashboard'))
 
     if request.method == 'POST':
-        if not request.form.get('email') or not request.form.get('password'):
-            flash('All fields are required', 'danger')
-            return render_template('login.html')
-            
-        email = request.form['email']
-        password = request.form['password']
-
-        # Validate user credentials
-        user = user_table.get_item(Key={'email': email}).get('Item')
-
-        if user:
-            # Check password
-            if check_password_hash(user['password'], password):  # Use check_password_hash to verify hashed password
-                session['email'] = email
-                session['role'] = user['role']  # Store the role in the session
-                session['name'] = user.get('name', '')
+        try:
+            if not request.form.get('email') or not request.form.get('password'):
+                flash('All fields are required', 'danger')
+                return render_template('login.html')
                 
-                # Update login count (optional)
-                try:
-                    user_table.update_item(
-                        Key={'email': email},
-                        UpdateExpression='SET login_count = if_not_exists(login_count, :zero) + :inc',
-                        ExpressionAttributeValues={':inc': 1, ':zero': 0}
-                    )
-                except Exception as e:
-                    logger.error(f"Failed to update login count: {e}")
-                
-                flash('Login successful.', 'success')
-                return redirect(url_for('dashboard'))
+            email = request.form['email']
+            password = request.form['password']
+
+            # Validate user credentials
+            try:
+                user = user_table.get_item(Key={'email': email}).get('Item')
+            except Exception as e:
+                logger.error(f"Error fetching user during login: {e}")
+                flash('Error during login. Please try again later.', 'danger')
+                return render_template('login.html')
+
+            if user:
+                # Check password
+                if check_password_hash(user['password'], password):  # Use check_password_hash to verify hashed password
+                    session['email'] = email
+                    session['role'] = user['role']  # Store the role in the session
+                    session['name'] = user.get('name', '')
+                    
+                    # Update login count (optional)
+                    try:
+                        user_table.update_item(
+                            Key={'email': email},
+                            UpdateExpression='SET login_count = if_not_exists(login_count, :zero) + :inc',
+                            ExpressionAttributeValues={':inc': 1, ':zero': 0}
+                        )
+                    except Exception as e:
+                        logger.error(f"Failed to update login count: {e}")
+                    
+                    flash('Login successful.', 'success')
+                    return redirect(url_for('dashboard'))
+                else:
+                    flash('Invalid password.', 'danger')
             else:
-                flash('Invalid password.', 'danger')
-        else:
-            flash('Email not found.', 'danger')
+                flash('Email not found.', 'danger')
+        except Exception as e:
+            logger.error(f"Login error: {e}")
+            flash('An error occurred during login. Please try again later.', 'danger')
 
     return render_template('login.html')
 
