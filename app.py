@@ -1,26 +1,32 @@
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 import boto3
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import logging
 import os
 import uuid
+import re
 from dotenv import load_dotenv
+from functools import wraps
 
 # ---------------------------------------
 # Load Environment Variables
 # ---------------------------------------
 if not load_dotenv():
-    print("Warning: .env file not loaded. Make sure it exists for environment configuration.")
+    raise FileNotFoundError(".env file not found. Make sure it exists for environment configuration.")
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # ---------------------------------------
 # Flask App Initialization
 # ---------------------------------------
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'temporary_key_for_development')
+app.secret_key = os.environ.get('SECRET_KEY', os.urandom(24))
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(hours=1)  # Session timeout after 1 hour
 
 # ---------------------------------------
 # App Configuration
@@ -44,6 +50,9 @@ TRIPS_TABLE_NAME = os.environ.get('TRIPS_TABLE_NAME', 'TripsTable')
 SNS_TOPIC_ARN = os.environ.get('SNS_TOPIC_ARN')
 ENABLE_SNS = os.environ.get('ENABLE_SNS', 'False').lower() == 'true'
 
+# Login attempt tracking for rate limiting
+login_attempts = {}
+
 # ---------------------------------------
 # AWS Resources Initialization
 # ---------------------------------------
@@ -57,7 +66,7 @@ try:
     trip_table = dynamodb.Table(TRIPS_TABLE_NAME)
 
 except Exception as e:
-    print(f"Error initializing AWS resources: {e}")
+    logger.error(f"Error initializing AWS resources: {e}")
     raise
 
 # ---------------------------------------
@@ -79,6 +88,31 @@ logger = logging.getLogger(__name__)
 def is_logged_in():
     return 'email' in session
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not is_logged_in():
+            flash('Please log in to access this page.', 'danger')
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
+
+def role_required(roles):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if not is_logged_in():
+                flash('Please log in to access this page.', 'danger')
+                return redirect(url_for('login', next=request.url))
+            
+            if session.get('role') not in roles:
+                flash('You do not have permission to access this page.', 'danger')
+                return redirect(url_for('dashboard'))
+            
+            return f(*args, **kwargs)
+        return decorated_function
+    return decorator
+
 def get_user_role(email):
     try:
         response = user_table.get_item(Key={'email': email})
@@ -86,6 +120,42 @@ def get_user_role(email):
     except Exception as e:
         logger.error(f"Error fetching role for {email}: {e}")
         return None
+
+def validate_email(email):
+    """Validate email format"""
+    pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+    return re.match(pattern, email) is not None
+
+def validate_phone(phone):
+    """Validate phone number format"""
+    pattern = r'^\+?[\d\s\-\(\)]{8,20}$'
+    return re.match(pattern, phone) is not None
+
+def validate_password(password):
+    """
+    Validate password strength:
+    - At least 8 characters
+    - Contains at least one digit
+    - Contains at least one uppercase letter
+    - Contains at least one lowercase letter
+    - Contains at least one special character
+    """
+    if len(password) < 8:
+        return False, "Password must be at least 8 characters long"
+    
+    if not re.search(r'\d', password):
+        return False, "Password must contain at least one digit"
+    
+    if not re.search(r'[A-Z]', password):
+        return False, "Password must contain at least one uppercase letter"
+    
+    if not re.search(r'[a-z]', password):
+        return False, "Password must contain at least one lowercase letter"
+    
+    if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        return False, "Password must contain at least one special character"
+    
+    return True, "Password is strong"
 
 def send_email(to_email, subject, body):
     if not ENABLE_EMAIL:
@@ -124,10 +194,31 @@ def publish_to_sns(message, subject="RoadBuddy Notification"):
     except Exception as e:
         logger.error(f"Failed to publish SNS: {e}")
 
+def check_rate_limit(ip):
+    """
+    Check if the IP has exceeded the rate limit for login attempts
+    Returns True if the IP should be rate limited, False otherwise
+    """
+    now = datetime.now()
+    if ip not in login_attempts:
+        login_attempts[ip] = []
+    
+    # Remove attempts older than 15 minutes
+    login_attempts[ip] = [t for t in login_attempts[ip] if now - t < timedelta(minutes=15)]
+    
+    # Add the current attempt
+    login_attempts[ip].append(now)
+    
+    # Rate limit if more than 5 attempts in 15 minutes
+    return len(login_attempts[ip]) > 5
+
+# -------------------------------
+
 # -------------------------------
 # Routes
 # -------------------------------
 
+# Home Page
 # Home Page
 @app.route('/')
 def index():
@@ -148,6 +239,11 @@ def contact():
         
         if not name or not email or not message:
             flash('Please fill all required fields', 'danger')
+            return render_template('contact.html')
+        
+        # Validate email format
+        if not validate_email(email):
+            flash('Please enter a valid email address', 'danger')
             return render_template('contact.html')
             
         try:
@@ -170,7 +266,6 @@ def contact():
     return render_template('contact.html')
 
 # Register User (Provider/Customer)
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if is_logged_in():  # Check if already logged in
@@ -179,22 +274,42 @@ def register():
     if request.method == 'POST':
         try:
             # Form validation
-            required_fields = ['name', 'email', 'password', 'phone', 'role']
+            required_fields = ['name', 'email', 'password', 'confirm_password', 'phone', 'role']
             for field in required_fields:
                 if field not in request.form or not request.form[field]:
                     flash(f'Please fill in the {field} field', 'danger')
                     return render_template('register.html')
             
+            name = request.form['name']
+            email = request.form['email']
+            password = request.form['password']
+            confirm_password = request.form['confirm_password']
+            phone = request.form['phone']
+            role = request.form['role']  # 'provider' or 'customer'
+            
+            # Validate email format
+            if not validate_email(email):
+                flash('Please enter a valid email address', 'danger')
+                return render_template('register.html')
+            
+            # Validate phone number
+            if not validate_phone(phone):
+                flash('Please enter a valid phone number', 'danger')
+                return render_template('register.html')
+            
             # Check if passwords match
-            if request.form['password'] != request.form['confirm_password']:
+            if password != confirm_password:
                 flash('Passwords do not match', 'danger')
                 return render_template('register.html')
             
-            name = request.form['name']
-            email = request.form['email']
-            password = generate_password_hash(request.form['password'])  # Hash password
-            phone = request.form['phone']
-            role = request.form['role']  # 'provider' or 'customer'
+            # Validate password strength
+            is_valid, password_message = validate_password(password)
+            if not is_valid:
+                flash(password_message, 'danger')
+                return render_template('register.html')
+            
+            # Hash password
+            hashed_password = generate_password_hash(password)
             
             # Check if user already exists
             try:
@@ -211,7 +326,7 @@ def register():
             user_item = {
                 'email': email,
                 'name': name,
-                'password': password,  # Store hashed password
+                'password': hashed_password,  # Store hashed password
                 'phone': phone,
                 'role': role,
                 'created_at': datetime.now().isoformat(),
@@ -265,6 +380,13 @@ def login():
                 
             email = request.form['email']
             password = request.form['password']
+            
+            # Check rate limiting by IP address
+            client_ip = request.remote_addr
+            if check_rate_limit(client_ip):
+                logger.warning(f"Rate limit exceeded for IP: {client_ip}")
+                flash('Too many login attempts. Please try again later.', 'danger')
+                return render_template('login.html')
 
             # Validate user credentials
             try:
@@ -277,26 +399,42 @@ def login():
             if user:
                 # Check password
                 if check_password_hash(user['password'], password):  # Use check_password_hash to verify hashed password
+                    # Set session to be permanent (will respect PERMANENT_SESSION_LIFETIME)
+                    session.permanent = True
                     session['email'] = email
                     session['role'] = user['role']  # Store the role in the session
                     session['name'] = user.get('name', '')
                     
-                    # Update login count (optional)
+                    # Reset login attempts on successful login
+                    if client_ip in login_attempts:
+                        del login_attempts[client_ip]
+                    
+                    # Update login count and last login timestamp
                     try:
                         user_table.update_item(
                             Key={'email': email},
-                            UpdateExpression='SET login_count = if_not_exists(login_count, :zero) + :inc',
-                            ExpressionAttributeValues={':inc': 1, ':zero': 0}
+                            UpdateExpression='SET login_count = if_not_exists(login_count, :zero) + :inc, last_login = :last_login',
+                            ExpressionAttributeValues={
+                                ':inc': 1,
+                                ':zero': 0,
+                                ':last_login': datetime.now().isoformat()
+                            }
                         )
                     except Exception as e:
-                        logger.error(f"Failed to update login count: {e}")
+                        logger.error(f"Failed to update login info: {e}")
+                    
+                    # Redirect to the next page if specified, otherwise to dashboard
+                    next_page = request.args.get('next')
+                    if next_page:
+                        return redirect(next_page)
                     
                     flash('Login successful.', 'success')
                     return redirect(url_for('dashboard'))
                 else:
-                    flash('Invalid password.', 'danger')
+                    flash('Invalid password. Please try again.', 'danger')
             else:
-                flash('Email not found.', 'danger')
+                flash('Email not found. Please check your email or register.', 'danger')
+                
         except Exception as e:
             logger.error(f"Login error: {e}")
             flash('An error occurred during login. Please try again later.', 'danger')
@@ -314,11 +452,8 @@ def logout():
 
 # Dashboard for both Providers and Customers
 @app.route('/dashboard')
+@login_required
 def dashboard():
-    if not is_logged_in():
-        flash('Please log in to continue.', 'danger')
-        return redirect(url_for('login'))
-
     role = session['role']
     email = session['email']
 
@@ -333,7 +468,6 @@ def dashboard():
             service_requests = response.get('Items', [])
         except Exception as e:
             logger.error(f"Failed to fetch service requests: {e}")
-            # Fallback to scan if GSI is not yet created
             try:
                 response = service_table.scan(
                     FilterExpression="provider_email = :email",
@@ -354,7 +488,6 @@ def dashboard():
             rentals = response.get('Items', [])
         except Exception as e:
             logger.error(f"Failed to fetch rentals: {e}")
-            # Fallback to scan
             try:
                 response = rental_table.scan(
                     FilterExpression="provider_email = :email",
@@ -380,7 +513,6 @@ def dashboard():
             service_requests = response.get('Items', [])
         except Exception as e:
             logger.error(f"Failed to fetch service requests: {e}")
-            # Fallback to scan
             try:
                 response = service_table.scan(
                     FilterExpression="customer_email = :email",
@@ -401,7 +533,6 @@ def dashboard():
             rentals = response.get('Items', [])
         except Exception as e:
             logger.error(f"Failed to fetch rentals: {e}")
-            # Fallback to scan
             try:
                 response = rental_table.scan(
                     FilterExpression="customer_email = :email",
@@ -422,7 +553,6 @@ def dashboard():
             trips = response.get('Items', [])
         except Exception as e:
             logger.error(f"Failed to fetch trips: {e}")
-            # Fallback to scan
             try:
                 response = trip_table.scan(
                     FilterExpression="customer_email = :email",
@@ -453,11 +583,8 @@ def dashboard():
 
 # Request Emergency Service (Customer)
 @app.route('/request_service', methods=['GET', 'POST'])
+@role_required(['customer'])
 def request_service():
-    if not is_logged_in() or session['role'] != 'customer':
-        flash('Only customers can request services.', 'danger')
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         # Form validation
         required_fields = ['service_type', 'location', 'description']
@@ -535,14 +662,10 @@ def request_service():
         providers = []
     
     return render_template('request_service.html', providers=providers)
-
 # Book a Vehicle Rental (Customer)
 @app.route('/book_rental', methods=['GET', 'POST'])
+@role_required(['customer'])
 def book_rental():
-    if not is_logged_in() or session['role'] != 'customer':
-        flash('Only customers can book rentals.', 'danger')
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         # Form validation
         required_fields = ['vehicle_type', 'pickup_date', 'dropoff_date', 'pickup_location']
@@ -556,6 +679,22 @@ def book_rental():
         dropoff_date = request.form['dropoff_date']
         pickup_location = request.form['pickup_location']
         provider_email = request.form.get('provider_email', '')  # Optional
+        
+        # Validate dates
+        try:
+            pickup_datetime = datetime.strptime(pickup_date, '%Y-%m-%d')
+            dropoff_datetime = datetime.strptime(dropoff_date, '%Y-%m-%d')
+            
+            if pickup_datetime >= dropoff_datetime:
+                flash('Dropoff date must be after pickup date', 'danger')
+                return redirect(url_for('book_rental'))
+            
+            if pickup_datetime < datetime.now():
+                flash('Pickup date cannot be in the past', 'danger')
+                return redirect(url_for('book_rental'))
+        except ValueError:
+            flash('Invalid date format. Please use YYYY-MM-DD format.', 'danger')
+            return redirect(url_for('book_rental'))
         
         customer_email = session['email']
         customer_name = session['name']
@@ -715,22 +854,15 @@ def service_details(service_id):
                     Key={'service_id': service_id},
                     UpdateExpression="SET #status = :s, updated_at = :u",
                     ExpressionAttributeNames={"#status": "status"},
-                    ExpressionAttributeValues={
-                        ':s': status_update,
-                        ':u': datetime.now().isoformat()
-                    }
+                    ExpressionAttributeValues={':s': status_update, ':u': datetime.now().isoformat()}
                 )
                 
                 # If service is being completed, add cost and notes
                 if status_update == 'completed' and 'cost' in request.form:
-                    service_table
                     service_table.update_item(
                         Key={'service_id': service_id},
                         UpdateExpression="SET cost = :c, service_notes = :n",
-                        ExpressionAttributeValues={
-                            ':c': request.form.get('cost', '0'),
-                            ':n': request.form.get('service_notes', '')
-                        }
+                        ExpressionAttributeValues={':c': request.form.get('cost', '0'), ':n': request.form.get('service_notes', '')}
                     )
                 
                 # Send email notification to customer if enabled
@@ -761,7 +893,6 @@ def service_details(service_id):
         logger.error(f"Error in service_details: {e}")
         flash('An error occurred. Please try again.', 'danger')
         return redirect(url_for('dashboard'))
-
 # View Rental Details
 @app.route('/rental_details/<rental_id>', methods=['GET', 'POST'])
 def rental_details(rental_id):
@@ -936,6 +1067,8 @@ def order_food():
     
     return render_template('order_food.html')
 
+
+# User profile page
 # User profile page
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
